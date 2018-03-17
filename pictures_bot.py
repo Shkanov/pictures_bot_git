@@ -112,8 +112,8 @@ def user_picture(message):
 
     # Uses the creds in ~/.aws/credentials
     s3 = boto3.resource('s3',
-                        aws_access_key_id='AKIAJFKZO6RKDXPK5TZA',
-                        aws_secret_access_key='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')
+                        aws_access_key_id='AKIAJTVSTPEO35OLMSFQ',
+                        aws_secret_access_key='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')
     bucket_name_to_upload_image_to = 'ec2-18-218-210-1.us-east-2.compute.amazonaws.com'
     s3_image_filename = file.file_path.rsplit('/',1)[-1]
 
