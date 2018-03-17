@@ -19,23 +19,30 @@ import telebot
 from telebot import types
 import pictures_config as config
 import dbworker
+import boto
+import boto.s3.connection
+from boto.s3.key import Key
 import numpy as np
 #import cv2
 import os
+import pandas as pd
+import pymysql
 #from IPython.display import display, Image
 #import matplotlib.pyplot as plt
 #import matplotlib.image as mpimg
 
 import requests
+import boto3
+
+
+
+
 
 
 bot = telebot.TeleBot(config.token)
 path=os.getcwd()
 
 # Начало диалога
-s3 = boto3.resource('s3')
-bucket = s3.Bucket('ec2-18-218-210-1.us-east-2.compute.amazonaws.com')
-    
 
 @bot.message_handler(commands=["start"], content_types=['text'])
 def cmd_start(message):
@@ -70,6 +77,7 @@ def user_entering_name(message):
 def user_picture(message):
     # В 67случае с именем не будем ничего проверять, пусть хоть "25671", хоть Евкакий
     bot.send_message(message.chat.id, "Загрузил! Давай ещё картинки!")
+    user_name=message.from_user.first_name+message.from_user.last_name
     print ('user full name =', message.from_user.first_name,message.from_user.last_name)
     user_id=message.from_user.id
    
@@ -84,8 +92,13 @@ def user_picture(message):
     print(long_url)
     #image = urllib.URLopener()
     #image.retrieve(long_url,"00000001.jpg")
+#DOWLOADING THE FILE INTO CURRENT DIRECTORY
     with open(file.file_path.rsplit('/', 1)[-1], 'wb') as handle:
         response = requests.get(long_url, stream=True)
+
+
+
+
 
         if not response.ok:
             print (response)
@@ -95,10 +108,65 @@ def user_picture(message):
                 break
 
             handle.write(block)
+#OR DOWNLOADING FILE DIRECTLY TO S3 WITHOUT SAVING ON DISK
+
+    # Uses the creds in ~/.aws/credentials
+    s3 = boto3.resource('s3',
+                        aws_access_key_id='AKIAJFKZO6RKDXPK5TZA',
+                        aws_secret_access_key='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')
+    bucket_name_to_upload_image_to = 'ec2-18-218-210-1.us-east-2.compute.amazonaws.com'
+    s3_image_filename = file.file_path.rsplit('/',1)[-1]
+
+    # Do this as a quick and easy check to make sure your S3 access is OK
+    for bucket in s3.buckets.all():
+        if bucket.name == bucket_name_to_upload_image_to:
+            print('Good to go. Found the bucket to upload the image into.')
+            good_to_go = True
+
+    if not good_to_go:
+        print('Not seeing your s3 bucket, might want to double check permissions in IAM')
+
+    # Given an Internet-accessible URL, download the image and upload it to S3,
+    # without needing to persist the image to disk locally
+    req_for_image = requests.get(long_url, stream=True)
+    file_object_from_req = req_for_image.raw
+    req_data = file_object_from_req.read()
+
+    # Do the actual upload to s3
+    s3.Bucket(bucket_name_to_upload_image_to).put_object(Key=s3_image_filename, Body=req_data)
 
 
+#UPLOADING THE FILE FROM DISK TO S3
+
+    """s3 = boto3.resource('s3',
+                        aws_access_key_id='AKIAJFKZO6RKDXPK5TZA',
+                        aws_secret_access_key='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',
+                        )
+    BUCKET = "ec2-18-218-210-1.us-east-2.compute.amazonaws.com"
+    print(os.path.join(os.getcwd(), 'file_49.jpg'))
+    s3.Bucket(BUCKET).upload_file(os.path.join(os.getcwd(), 'file_49.jpg'), "1.jpg")"""
+#WRITING INFO INTO SQL TABLE
+    host = "picturesbot.c6bnfewxkhhw.us-east-1.rds.amazonaws.com"
+    port = 3306
+    dbname = "picturesbot"
+    user = "shkanov"
+    password = "Steel2033102"
+    conn = pymysql.connect(host, user=user, port=port,
+                           passwd=password, db=dbname, autocommit=True)
+    cur=conn.cursor()
+    #cur.execute('drop table pictures_bot_info;')
+    #cur.execute('create table pictures_bot_info '
+    #            '(filename VARCHAR(100), '
+    #            'username VARCHAR(100));')
+    add_data = ("INSERT INTO {table} "
+                "(filename, username) "
+                "VALUES (%s, %s)")
+    atable = 'pictures_bot_info'
+    data_word = (file.file_path.rsplit('/',1)[-1], user_name)
+    cur.execute(add_data.format(table=atable), data_word)
 
 
+    print(pd.read_sql('select * from pictures_bot_info;', con=conn))
     """img = cv2.imread(long_url,0)
     cv2.imshow('image',img)
     cv2.waitKey(0)
