@@ -33,7 +33,8 @@ import pymysql
 
 import requests
 import boto3
-
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 
 
@@ -167,6 +168,28 @@ def user_picture(message):
 
 
     print(pd.read_sql('select * from pictures_bot_info;', con=conn))
+
+#WRITING TO GOOGLE SPREADSHEETS
+    # use creds to create a client to interact with the Google Drive API
+    scope = ['https://spreadsheets.google.com/feeds',
+             'https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('client-server.json', scope)
+    client = gspread.authorize(creds)
+
+    # Find a workbook by name and open the first sheet
+    # Make sure you use the right name here.
+    sheet = client.open("pictures_bot").sheet1
+
+    index = 1
+    # Extract and print all of the values
+    index+=1
+
+    row = [file.file_path.rsplit('/',1)[-1],  user_name]
+
+    sheet.insert_row(row, index)
+    list_of_hashes = sheet.get_all_records()
+    print(list_of_hashes)
+    print(sheet.row_count)
     """img = cv2.imread(long_url,0)
     cv2.imshow('image',img)
     cv2.waitKey(0)
