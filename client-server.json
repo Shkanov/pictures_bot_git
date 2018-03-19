@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "picturesbot",
+  "private_key_id": "25ef8d9b76facb2aaf8ffabbec205b58d2a4f682",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDidlRBg/3yK6Or\nigzhsWFcarJmE/z3oGoZoGV3cN0/f2kHebWg6YXrCQWbfj3KIo3u5wldGQiWGzYp\nKqnMFqT+FOhfcdXBY/p6uFLpn/9ZXMNvurJmOSis+euAGwpPDZjH8l/OiDH0NRJO\nvq89ee38JDrBStqeb0DOYdlQ+vNGMYigLj+3TACBxW3qoCDGI0Rrniuvg0vbd+wG\nbnPMoOQXuUt3Kt9ojGns55N9U3p9XIllup7ybCqhHS1WdpoIPTM/qKWoTDRewWtg\nXP25WWPR4s9p86ReuI1Z9/zwcF7hJNMXcqouGBalI8ww4S8TkUWeKlXx8xqHYIBw\nvxHVB0U7AgMBAAECggEAH6DJGbFWiTkBDdck/2xnnaGlMs592RPFXbjiEvFnZRPl\nVk7wR/31XyMObm4OMSnsSr5nt2Hkqho40T0NI9zRxE6lOZdLdEwDUpplsg1Pe2qS\nPQuFGPPIs4fgFS8xnGLYwKwgJ1csKuAyo17MWLirvThOIGrU56XAFlLiKAY0bcv/\n9buUSJ53Rc57GLMGaHzAQlXE7dA1UPgXjPsdHsgBkVQ8XP0I30B8q+PRbebIctIF\n72MkKXsQy/+vp8qPNyakQN3mY3CxWwTlAC2jwAZC+CvwrFbWyiRN+Y5VYPCgyXSQ\nlVcu1ArJsHeOcrJCf/zEvfDQCZbrxMJuKMZDNi6jKQKBgQD1BAhq72h0iSt/n8oO\nQRcMOuRiXyZl0EGhy/YTj3xjxvn4qxyQggca6j61RJkEuGcCphMsiMfhGdX0lQYr\n+qZXNzs/zbs6wMAU7+L7fQ3G53p/k/nVasbrbNAuQi35wewrdqxxLt7BmPZeceln\nSmKelF0uEZaJd38X6UdhNJDOVwKBgQDsnV0DdJqwzHH3Q+yrE30/y6UjTUEmVumj\n82kS9qhA2C25vp6hyuCZ/BK/6TwO924NLxu5/u8KX2iuqNIKmoA/z96qQaEz6aBX\nOG/UfNjwuf7msVJ3aRpvnTYoQfabUtBw+rN6jMkg0obKvFjTxxO513EVID5vHdwD\nOEaMgaUpvQKBgEZOz/OPm5PFQNwwiBSrDOgPhjXMRAJ3Tj4VfxmB1Rn0oQqAX4QA\nK/XHPhNaCebW24hhC6N95I1tkn3KvailFlJ0oOXgLVfgs73OUH4GFov7JKWzWr+p\nEkfAQ8TibLr8sL6QIU+hOX6oXBoh6e4f5EjJHiv4FBCCX9AGutrj8KGlAoGARSkq\nCtyGaq8XkMLV5ptnvMH1nv/xzxcQa8+2IsjeHTYTB3vkOj5msBuyD05JM8a28DuY\nyyDtFgcVPhgybM8ENaK43uMYD2h2aYghh+aGMrbq/ttN04FxLLazIclGH9hw/NUK\nqQOFtoZSx+eNvzktVuDWOOqX1TrRGE/WrzMl57ECgYEAtnCQZCC4x+oVT0xAlIDf\nEW3Hx3SZoByyYkAeXniqJGQHwEq2FKvfCxkqnrEkWLitWzR2orxEQ6h3EEXmT6CR\nD4Zq93xpvFsCKANyA5Z1ksL0HTVqF9bRKMB5x6dnjnY7J+VzLn/Hmuy+bmYKSbxR\nBySTQX11nraY5K6TSVgciSI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pictures-bot@picturesbot.iam.gserviceaccount.com",
+  "client_id": "117981315642827827493",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pictures-bot%40picturesbot.iam.gserviceaccount.com"
+}
