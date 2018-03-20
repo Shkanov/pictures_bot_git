@@ -35,6 +35,9 @@ import requests
 import boto3
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import time
+import logging
+
 
 
 
@@ -268,6 +271,6 @@ if __name__ == '__main__':
 
     except Exception as e:
 
-        logger.error(e)
+        logging.error(e)
 
         time.sleep(15)
