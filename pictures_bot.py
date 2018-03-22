@@ -273,4 +273,4 @@ if __name__ == '__main__':
 
         logging.error(e)
 
-        time.sleep(15)
+        time.sleep(30)
