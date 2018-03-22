@@ -271,6 +271,6 @@ if __name__ == '__main__':
 
     except Exception as e:
 
-        logging.error(e)
+        logging.logger.error(e)
 
         time.sleep(30)
