@@ -36,7 +36,7 @@ import boto3
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import time
-import logging
+from logging import Logger
 
 
 
@@ -116,8 +116,8 @@ def user_picture(message):
 
     # Uses the creds in ~/.aws/credentials
     s3 = boto3.resource('s3',
-                        aws_access_key_id='AKIAJTVSTPEO35OLMSFQ',
-                        aws_secret_access_key='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')
+                        aws_access_key_id='AKIAJNHVITVJFCOAZ4MA',
+                        aws_secret_access_key='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')
     bucket_name_to_upload_image_to = 'ec2-18-218-210-1.us-east-2.compute.amazonaws.com'
     s3_image_filename = file.file_path.rsplit('/',1)[-1]
 
@@ -143,8 +143,8 @@ def user_picture(message):
 #UPLOADING THE FILE FROM DISK TO S3
 
     """s3 = boto3.resource('s3',
-                        aws_access_key_id='AKIAJFKZO6RKDXPK5TZA',
-                        aws_secret_access_key='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',
+                        aws_access_key_id='AKIAJNHVITVJFCOAZ4MA',
+                        aws_secret_access_key='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',
                         )
     BUCKET = "ec2-18-218-210-1.us-east-2.compute.amazonaws.com"
     print(os.path.join(os.getcwd(), 'file_49.jpg'))
@@ -271,6 +271,6 @@ if __name__ == '__main__':
 
     except Exception as e:
 
-        logging.logger.error(e)
+        print(e)
 
         time.sleep(30)
